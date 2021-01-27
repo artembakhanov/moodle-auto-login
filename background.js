@@ -26,7 +26,7 @@ chrome.cookies.onChanged.addListener(function (changeInfo) {
         if (items.cookie && !changeInfo.removed) {
             var fullCookie = changeInfo.cookie
             console.log(fullCookie)
-            if (fullCookie.expirationDate !== 1895665688 && fullCookie.domain === "sso.university.innopolis.ru") {
+            if (fullCookie.expirationDate !== 1895665688 && ["sso.university.innopolis.ru", "moodle.innopolis.university"].indexOf(fullCookie.domain) >= 0) {
                 var newCookie = {};
 
                 //If no real url is available use: "https://" : "http://" + domain + path
