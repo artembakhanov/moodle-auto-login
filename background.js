@@ -5,15 +5,15 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
         if (items.auto_clicks && changeInfo.status === "complete")
         {
-            if (tab.url.startsWith("https://moodle.innopolis.university/admin/oauth2callback.php") || tab.url.startsWith("https://moodle.innopolis.university/auth/oauth2/login.php")) {
-                chrome.tabs.executeScript(tabId, {file: "skiperror.js"});
+            if (tab.url.startsWith("https://moodl.innopolis.university/admin/oauth2callback.php") || tab.url.startsWith("https://moodle.innopolis.university/auth/oauth2/login.php")) {
+                chrome.tabs.executeScript(tabId, {code: `document.querySelector("button[type=submit].btn").click()`, runAt: "document_end"});
             }
             else if (tab.url.startsWith("https://moodle.innopolis.university/login/index.php")) {
-                chrome.tabs.executeScript(tabId, {file: "login.js"});
+                chrome.tabs.executeScript(tabId, {code: `document.querySelector("a[title='Innopolis University']").click()`, runAt: "document_end"});
             } else if (tab.url.startsWith("https://moodle.innopolis.university") ) {
-                chrome.tabs.executeScript(tabId, {file: "login2.js"});
+                chrome.tabs.executeScript(tabId, {code: `document.querySelector("span.login > a").click();`, runAt: "document_end"});
             } else if (tab.url.startsWith("https://sso.university.innopolis.ru")) {
-                chrome.tabs.executeScript(tabId, {file: "ssologin.js"});
+                chrome.tabs.executeScript(tabId, {file: "ssologin.js", runAt: "document_end"});
             }
         }
 
